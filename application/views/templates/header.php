@@ -24,9 +24,15 @@
 					<li>
 						<a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a>
 					</li>
+					<li>
+						<a class="nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
+					</li>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
+						</li>
+						<li>
+							<a class="nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
 						</li>
 					</ul>
 			</ul>
