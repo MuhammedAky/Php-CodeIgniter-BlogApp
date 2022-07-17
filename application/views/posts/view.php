@@ -5,25 +5,28 @@
 	<?php echo $post['body']; ?>
 </div>
 
-<hr>
-<a class="btn btn-info pull-left" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit</a>
-<?php echo form_open('/posts/delete/'.$post['id']); ?>
-	<input type="submit" value="Delete" class="btn btn-danger">
-</form>
+<?php if($this->session->userdata('user_id') == $post['user_id']): ?>
+	<hr>
+	<a class="btn btn-default pull-left" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit</a>
+	<?php echo form_open('/posts/delete/'.$post['id']); ?>
+		<input type="submit" value="Delete" class="btn btn-danger">
+	</form>
+<?php endif; ?>
 <hr>
 <h3>Comments</h3>
-<?php if($comments) :  ?>
-	<?php foreach($comments as  $comment) : ?>
+<?php if($comments) : ?>
+	<?php foreach($comments as $comment) : ?>
 		<div class="well">
-			<h5><?php echo $comment["body"]; ?> [by <strong><?php echo $comment["name"]; ?></strong>]</h5>
+			<h5><?php echo $comment['body']; ?> [by <strong><?php echo $comment['name']; ?></strong>]</h5>
 		</div>
 	<?php endforeach; ?>
-<?php else: ?>
+<?php else : ?>
+	<p>No Comments To Display</p>
 <?php endif; ?>
 <hr>
 <h3>Add Comment</h3>
 <?php echo validation_errors(); ?>
-<?php echo form_open("comments/create/".$post['id']); ?>
+<?php echo form_open('comments/create/'.$post['id']); ?>
 	<div class="form-group">
 		<label>Name</label>
 		<input type="text" name="name" class="form-control">
